@@ -1,1 +1,73 @@
 /* You can add global styles to this file, and also import other style files */
+.vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+.horizontal-center {
+  display: flex;
+  justify-content: center;
+}
+
+.grid-1 {
+  float: left;
+  width: 8.33%;
+}
+
+.grid-2 {
+  float: left;
+  width: 16.67%;
+}
+
+.grid-3 {
+  float: left;
+  width: 25%;
+}
+
+.grid-4 {
+  float: left;
+  width: 33.33%;
+}
+
+.grid-5 {
+  float: left;
+  width: 41.67%;
+}
+
+.grid-6 {
+  float: left;
+  width: 50%;
+}
+
+.grid-7 {
+  float: left;
+  width: 58.33%;
+}
+
+.grid-8 {
+  float: left;
+  width: 66.67%;
+}
+
+.grid-9 {
+  float: left;
+  width: 75%;
+}
+
+.grid-10 {
+  float: left;
+  width: 83.33%;
+}
+
+.grid-11 {
+  float: left;
+  width: 91.67%;
+}
+
+.grid-12 {
+  float: left;
+  width: 100%;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

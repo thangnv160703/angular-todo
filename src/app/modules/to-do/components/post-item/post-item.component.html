@@ -1,0 +1,16 @@
+<div style="display: flex;">
+  <div class="grid-2">
+    <p>Id: {{post.id}}</p>
+    <p>UserId: {{post.userId}}</p>
+  </div>
+  <div class="grid-6">
+    <p>Title: {{post.title}}</p>
+    <p>{{post.body}}</p>
+  </div>
+  <div class="grid-2 vertical-center horizontal-center">
+    <app-edit-task-button />
+  </div>
+  <div class="grid-2 vertical-center horizontal-center">
+    <app-delete-task-button />
+  </div>
+</div>
