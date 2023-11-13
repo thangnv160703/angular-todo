@@ -1,47 +1,35 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IPost } from 'src/app/shared/interfaces/IPost';
-import { PostCrudService } from 'src/app/shared/services/post-crud.service';
-import { PostNotificationService } from '../../services/post-notification.service';
 import { Subject, pipe, takeUntil } from 'rxjs';
 import { TaskCrudService } from 'src/app/shared/services/task-crud.service';
+import { TaskFilterService } from '../../services/task-filter.service';
 
 @Component({
   selector: 'app-to-do-main',
   templateUrl: './to-do-main.component.html',
   styleUrls: ['./to-do-main.component.scss']
 })
-export class ToDoMainComponent {
-  protected postList: IPost[] = [];
-  private $unsubscribe = new Subject<void>();
-
+export class ToDoMainComponent implements OnInit, OnDestroy {
+  private unsubscribe$ = new Subject<void>();
   protected taskId!: number;
 
   constructor(
-    private postCrud: PostCrudService,
-    private postNotify: PostNotificationService,
-    private taskCrud: TaskCrudService
+    private taskCrudSer: TaskCrudService,
+    private taskFilterSer: TaskFilterService
   ) { }
 
   ngOnInit(): void {
-    this.postCrud.getAllPosts().subscribe(
-      (response: IPost[]) => {
-        this.postList = response;
-      }
-    );
-    this.postNotify.getPostSubject()
-      .pipe(takeUntil(this.$unsubscribe))
-      .subscribe(
-        (postId: number) => {
-          console.log('Main:', { postId });
-        }
-      );
-    this.taskCrud.getAll().subscribe(
+    this.taskCrudSer.getAll().subscribe(
+      response => console.log(response)
+    )
+    this.taskFilterSer.getSubject().pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe(
       response => console.log(response)
     )
   }
 
   ngOnDestroy(): void {
-    this.$unsubscribe.next();
-    this.$unsubscribe.complete();
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

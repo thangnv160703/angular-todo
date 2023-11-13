@@ -1,0 +1,34 @@
+<form (ngSubmit)="handleSubmitForm()" [formGroup]="userInfo">
+  <h2>Sign in</h2>
+  <div>
+    <label for="username">Username: </label>
+    <!-- <input id="username" type="text" formControlName="username"> -->
+    <trudi-text-field id="'username" formControlName="username" />
+    <ng-container *ngIf="userInfo.get('username')?.errors?.['test']">
+      Error test
+    </ng-container>
+    <ng-container *ngIf="userInfo.get('username')?.errors?.['duplicated']">
+      Error duplicated
+    </ng-container>
+  </div>
+  <div>
+    <label for="password">Password: </label>
+    <trudi-text-field id="password" type="password" formControlName="password" />
+    <!-- <input id="password" type="password" formControlName="password"> -->
+  </div>
+  <div>
+    <trudi-text-field id="number" type="number" [formControl]="numberControl" />
+    <span>Number: {{numberControl.value}}</span>
+  </div>
+  <div>
+    <input type="checkbox" name="rememberMe" formControlName="rememberMe">
+  </div>
+  <div>
+    <span>Username: {{userInfo.get('username')?.value}} </span><br>
+    <span>Password: {{userInfo.get('password')?.value}} </span><br>
+    <span>Rememeber: {{userInfo.get('rememberMe')?.value}} </span>
+  </div>
+  <div>
+    <button type="submit" [disabled]="userInfo.invalid">Submit</button>
+  </div>
+</form>

@@ -1,0 +1,22 @@
+<form (ngSubmit)="handleSubmitForm()">
+  <h2>Sign in</h2>
+  <div>
+    <label for="username">Username: </label>
+    <input id="username" type="text" [(ngModel)]="username" name="username">
+  </div>
+  <div>
+    <label for="password">Password: </label>
+    <input id="password" type="password" [(ngModel)]="password" name="password">
+  </div>
+  <div>
+    <input type="checkbox" [(ngModel)]="rememberMe" name="rememberMe">
+  </div>
+  <div>
+    <span>Username: {{username}} </span><br>
+    <span>Password: {{password}} </span><br>
+    <span>Rememeber: {{rememberMe}} </span>
+  </div>
+  <div>
+    <button type="submit">Submit</button>
+  </div>
+</form>

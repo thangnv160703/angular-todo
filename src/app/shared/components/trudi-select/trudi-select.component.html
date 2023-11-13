@@ -1,0 +1,5 @@
+<ng-container *ngFor="let choice of choices">
+  <button (click)="handleChoiceClicked(choice.value)">
+    {{choice.viewValue}}
+  </button>
+</ng-container>

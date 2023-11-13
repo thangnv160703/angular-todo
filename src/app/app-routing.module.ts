@@ -6,6 +6,10 @@ const routes: Routes = [
     path: 'app',
     loadChildren: () => import('./modules/to-do/to-do.module').then(m => m.ToDoModule)
   },
+  {
+    path: 'tutorial',
+    loadChildren: () => import('./modules/tutorial/tutorial.module').then(m => m.TutorialModule)
+  },
   { path: '', redirectTo: 'app', pathMatch: 'full' }
 ];
 
