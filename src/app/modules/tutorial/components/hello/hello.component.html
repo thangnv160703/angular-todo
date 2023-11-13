@@ -1,0 +1,15 @@
+<div>
+  <input title="user-name" type="text" [(ngModel)]="user.name">
+  <input title="user-age" type="number" [(ngModel)]="user.age">
+  <p [style.backgroundColor]="'lightblue'" [style.color]="'red'">
+    {{user.name}} {{user.age}}
+  </p>
+  <ng-content select="tutorial-inner-comp" />
+  <button (click)="handleButtonClick()">Click me</button>
+</div>
+<ng-container *ngIf="user.age>=18; else notAdult">
+  <div [class.background-tomato]="true">An adult</div>
+</ng-container>
+<ng-template #notAdult>
+  <div [class.background-blue]="true" class="color-red">Not an adult</div>
+</ng-template>
