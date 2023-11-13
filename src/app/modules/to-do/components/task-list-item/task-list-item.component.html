@@ -1,1 +1,16 @@
-<p>task-list-item works!</p>
+<div style="border: 1px solid black; border-radius: 10px; padding: 5px 5px; display: flex;">
+  <div class="grid-7">
+    <p>Title: {{task.title}}</p>
+    <p>Deadline: {{task.deadline | date}} </p>
+    <p>Note: {{task.note}}</p>
+  </div>
+  <div class="grid-1 vertical-center horizontal-center">
+    <trudi-checkbox [checked]="task.isCompleted" (onCheckedChange)="handleCheckboxChange()" />
+  </div>
+  <div class="grid-2 vertical-center horizontal-center">
+    <todo-edit-task-button [task]="task" />
+  </div>
+  <div class="grid-2 vertical-center horizontal-center">
+    <todo-delete-task-button [task]="task" />
+  </div>
+</div>

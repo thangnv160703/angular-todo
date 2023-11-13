@@ -1,13 +1,17 @@
 <h1 style="text-align: center;">TODO</h1>
 <div class="task-content">
-  <div style="display: flex;">
+  <div style="display: flex; padding: 10px 0;">
     <div style="float: left; width: 50%;">
-      <app-filter />
+      <todo-filter />
     </div>
     <div style="float: left; width: 50%;">
-      <app-add-task-button />
+      <todo-add-task-button />
     </div>
   </div>
 
-  <app-counter />
+  <div>
+    <todo-task-list [cachedtasks]="taskList" />
+  </div>
+
+  <todo-counter />
 </div>
