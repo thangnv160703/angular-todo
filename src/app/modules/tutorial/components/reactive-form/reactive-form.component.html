@@ -3,7 +3,7 @@
   <div>
     <label for="username">Username: </label>
     <!-- <input id="username" type="text" formControlName="username"> -->
-    <trudi-text-field id="'username" formControlName="username" />
+    <trudi-text-field id="'username'" formControlName="username" />
     <ng-container *ngIf="userInfo.get('username')?.errors?.['test']">
       Error test
     </ng-container>
@@ -14,7 +14,6 @@
   <div>
     <label for="password">Password: </label>
     <trudi-text-field id="password" type="password" formControlName="password" />
-    <!-- <input id="password" type="password" formControlName="password"> -->
   </div>
   <div>
     <trudi-text-field id="number" type="number" [formControl]="numberControl" />

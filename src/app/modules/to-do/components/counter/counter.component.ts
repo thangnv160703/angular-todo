@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-counter',
+  selector: 'todo-counter',
   templateUrl: './counter.component.html',
   styleUrls: ['./counter.component.scss']
 })

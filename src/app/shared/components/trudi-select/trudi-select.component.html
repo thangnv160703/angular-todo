@@ -1,5 +1,13 @@
 <ng-container *ngFor="let choice of choices">
-  <button (click)="handleChoiceClicked(choice.value)">
-    {{choice.viewValue}}
-  </button>
+  <ng-container *ngIf="choice.value == chosen">
+    <button mat-raised-button color="primary" (click)="handleChoiceClicked(choice.value)">
+      {{choice.viewValue}}
+    </button>
+  </ng-container>
+  <ng-container *ngIf="choice.value != chosen">
+    <button mat-stroked-button color="primary" (click)="handleChoiceClicked(choice.value)">
+      {{choice.viewValue}}
+    </button>
+  </ng-container>
 </ng-container>
+

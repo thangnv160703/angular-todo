@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subject, pipe, takeUntil } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ITask } from 'src/app/shared/interfaces/ITask';
 import { TaskCrudService } from 'src/app/shared/services/task-crud.service';
-import { TaskFilterService } from '../../services/task-filter.service';
+import { TodoReloadService } from '../../services/todo-reload.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-to-do-main',
@@ -9,27 +10,34 @@ import { TaskFilterService } from '../../services/task-filter.service';
   styleUrls: ['./to-do-main.component.scss']
 })
 export class ToDoMainComponent implements OnInit, OnDestroy {
+  protected taskList: ITask[] = [];
   private unsubscribe$ = new Subject<void>();
-  protected taskId!: number;
 
   constructor(
     private taskCrudSer: TaskCrudService,
-    private taskFilterSer: TaskFilterService
+    private todoReloadSer: TodoReloadService
   ) { }
 
   ngOnInit(): void {
-    this.taskCrudSer.getAll().subscribe(
-      response => console.log(response)
-    )
-    this.taskFilterSer.getSubject().pipe(
+    this.getData();
+    this.todoReloadSer.getSubject().pipe(
       takeUntil(this.unsubscribe$)
     ).subscribe(
-      response => console.log(response)
+      () => {
+        console.log('get data');
+        this.getData();
+      }
     )
   }
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
+  }
+
+  private getData(): void {
+    this.taskCrudSer.getAll().subscribe(
+      response => this.taskList = response
+    )
   }
 }
