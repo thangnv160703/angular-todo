@@ -13,5 +13,9 @@
     <todo-task-list [cachedtasks]="taskList" />
   </div>
 
-  <todo-counter />
+  <todo-counter [tasks]="taskList" />
 </div>
+
+<ng-container *ngIf="loading">
+  <trudi-loading-page />
+</ng-container>

@@ -1,34 +1,32 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
-  selector: 'trudi-text-field',
+  selector: 'trudi-datepicker',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule],
-  templateUrl: './trudi-text-field.component.html',
-  styleUrls: ['./trudi-text-field.component.scss'],
-  providers: [
+  imports: [CommonModule, ReactiveFormsModule, MatFormFieldModule, MatDatepickerModule, MatInputModule, MatNativeDateModule],
+  templateUrl: './trudi-datepicker.component.html',
+  styleUrls: ['./trudi-datepicker.component.scss'],
+  providers:[
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: TrudiTextFieldComponent,
+      useExisting: TrudiDatepickerComponent,
       multi: true
     }
   ]
 })
-export class TrudiTextFieldComponent implements ControlValueAccessor, OnInit, OnDestroy {
+export class TrudiDatepickerComponent implements ControlValueAccessor, OnInit, OnDestroy {
   @Input() label: string = '';
-  @Input() placeholder: string = '';
-
-  protected control = new FormControl<string>('');
+  protected control = new FormControl<Date>(new Date());
   private onChange: Function = () => { };
   private onTouched: Function = () => { };
   private unsubscribe$ = new Subject<void>();
-
-  constructor( ) { }
 
   ngOnInit(): void {
     this.control.valueChanges.pipe(
@@ -43,7 +41,7 @@ export class TrudiTextFieldComponent implements ControlValueAccessor, OnInit, On
     this.unsubscribe$.complete();
   }
 
-  writeValue(obj: string): void {
+  writeValue(obj: Date): void {
     this.control.setValue(obj);
   }
 
@@ -54,5 +52,4 @@ export class TrudiTextFieldComponent implements ControlValueAccessor, OnInit, On
   registerOnTouched(fn: Function): void {
     this.onTouched = fn;
   }
-
 }

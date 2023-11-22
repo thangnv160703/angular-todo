@@ -12,6 +12,7 @@ import { Subject, takeUntil } from 'rxjs';
 export class ToDoMainComponent implements OnInit, OnDestroy {
   protected taskList: ITask[] = [];
   private unsubscribe$ = new Subject<void>();
+  protected loading = true;
 
   constructor(
     private taskCrudSer: TaskCrudService,
@@ -26,6 +27,7 @@ export class ToDoMainComponent implements OnInit, OnDestroy {
       () => {
         console.log('get data');
         this.getData();
+        this.loading = true;
       }
     )
   }
@@ -37,7 +39,10 @@ export class ToDoMainComponent implements OnInit, OnDestroy {
 
   private getData(): void {
     this.taskCrudSer.getAll().subscribe(
-      response => this.taskList = response
+      response => {
+        this.taskList = response;
+        this.loading = false;
+      }
     )
   }
 }
