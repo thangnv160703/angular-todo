@@ -1,9 +1,9 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Injector, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
-import { Subject, takeUntil } from 'rxjs';
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { Subject, take, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'trudi-text-field',
@@ -19,22 +19,24 @@ import { MatInputModule } from '@angular/material/input';
     }
   ]
 })
-export class TrudiTextFieldComponent implements ControlValueAccessor, OnInit, OnDestroy {
+export class TrudiTextFieldComponent implements ControlValueAccessor, OnInit {
   @Input() label: string = '';
   @Input() placeholder: string = '';
   @Input() required: boolean = false;
 
-  protected control = new FormControl<string | number>('');
+  protected control = new FormControl<string>('');
   private onChange: Function = () => { };
   private onTouched: Function = () => { };
   private unsubscribe$ = new Subject<void>();
 
+  constructor() { }
+
   ngOnInit(): void {
     this.control.valueChanges.pipe(
       takeUntil(this.unsubscribe$)
-    ).subscribe(() => {
-      this.onChange(this.control.value);
-    })
+    ).subscribe(
+      () => this.onChange(this.control.value)
+    )
   }
 
   ngOnDestroy(): void {
@@ -42,7 +44,7 @@ export class TrudiTextFieldComponent implements ControlValueAccessor, OnInit, On
     this.unsubscribe$.complete();
   }
 
-  writeValue(obj: string | number): void {
+  writeValue(obj: string): void {
     this.control.setValue(obj);
   }
 
@@ -53,16 +55,5 @@ export class TrudiTextFieldComponent implements ControlValueAccessor, OnInit, On
   registerOnTouched(fn: Function): void {
     this.onTouched = fn;
   }
-
-  protected getErrorMessage(): string {
-    if(this.control.hasError('required')){
-      return 'Enter value';
-    }
-    return 'Test';
-  }
-
-  // setDisabledState?(isDisabled: boolean): void {
-  //   throw new Error('Method not implemented.');
-  // }
 
 }

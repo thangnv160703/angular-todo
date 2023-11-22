@@ -1,12 +1,17 @@
 <h1 mat-dialog-title>
   {{(data.add ? 'Add task' : 'Edit task')}}
 </h1>
-<div mat-dialog-content>
-  <form>
-    <trudi-text-field [label]="'Title'" [formControl]="title" />
+<div mat-dialog-content style="padding-top: 10px;">
+  <form [formGroup]="taskForm">
+    <div>
+      <trudi-text-field [label]="'Title'" formControlName="title" />
+    </div>
+    <div>
+      <trudi-text-field [label]="'Note'" formControlName="note" />
+    </div>
   </form>
 </div>
 <mat-dialog-actions align="end" style="padding: 15px;">
   <trudi-button [viewValue]="'Cancel'" mat-dialog-close/>
-  <trudi-button [color]="'warn'" style="margin-left: 10px;" [viewValue]="'Confirm'" mat-dialog-close (onClicked)="handleConfirmClick()" />
+  <trudi-button [disabled]="taskForm.invalid" [color]="'primary'" style="margin-left: 10px;" [viewValue]="'Confirm'" (onClicked)="handleConfirmClick()" />
 </mat-dialog-actions>

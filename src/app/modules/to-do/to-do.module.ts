@@ -19,6 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AddEditTaskDialogComponent } from './components/add-edit-task-dialog/add-edit-task-dialog.component';
 import { TrudiTextFieldComponent } from 'src/app/shared/components/trudi-text-field/trudi-text-field.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HighlightDirective } from 'src/app/shared/directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     TrudiButtonComponent,
     MatDialogModule,
     TrudiTextFieldComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HighlightDirective
   ],
   exports: []
 })

@@ -1,13 +1,14 @@
 <ng-container *ngFor="let choice of choices">
-  <ng-container *ngIf="choice.value == chosen">
+  <ng-container *ngIf="choice.value == chosen; else notChosen">
     <button mat-raised-button color="primary" (click)="handleChoiceClicked(choice.value)">
       {{choice.viewValue}}
     </button>
   </ng-container>
-  <ng-container *ngIf="choice.value != chosen">
+
+  <ng-template #notChosen>
     <button mat-stroked-button color="primary" (click)="handleChoiceClicked(choice.value)">
       {{choice.viewValue}}
     </button>
-  </ng-container>
+  </ng-template>
 </ng-container>
 

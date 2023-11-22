@@ -13,6 +13,7 @@ export class TrudiButtonComponent {
   @Input() viewValue: string = '';
   @Input() color: string = '';
   @Output() onClicked = new EventEmitter<void>();
+  @Input() disabled: boolean = false;
 
   protected handleClick(): void {
     this.onClicked.emit();
