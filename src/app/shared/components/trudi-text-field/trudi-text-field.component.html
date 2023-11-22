@@ -1,13 +1,4 @@
 <mat-form-field appearance="outline">
   <mat-label>{{label}}</mat-label>
   <input type="text" matInput placeholder="{{placeholder}}" [formControl]="control">
-  <!-- <ng-container *ngIf="control.touched && control.invalid">
-    <mat-error>Hello</mat-error>
-  </ng-container> -->
 </mat-form-field>
-
-<div>
-  <p>
-    {{control.touched}} - {{control.hasError('minLength')}} - {{control.hasError('required')}} - {{control.dirty}}
-  </p>
-</div>

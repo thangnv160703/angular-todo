@@ -1,4 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+
+.full-screen {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1200;
+  position: absolute;
+  background-color: black;
+  opacity: 0.5;
+}
+
+.full-witdh {
+  width: 100%;
+}
+
 .vertical-center {
   display: flex;
   align-items: center;

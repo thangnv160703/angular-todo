@@ -20,6 +20,8 @@ import { AddEditTaskDialogComponent } from './components/add-edit-task-dialog/ad
 import { TrudiTextFieldComponent } from 'src/app/shared/components/trudi-text-field/trudi-text-field.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HighlightDirective } from 'src/app/shared/directives/highlight.directive';
+import { TrudiDatepickerComponent } from 'src/app/shared/components/trudi-datepicker/trudi-datepicker.component';
+import { TrudiLoadingPageComponent } from 'src/app/shared/components/trudi-loading-page/trudi-loading-page.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { HighlightDirective } from 'src/app/shared/directives/highlight.directiv
     MatDialogModule,
     TrudiTextFieldComponent,
     ReactiveFormsModule,
-    HighlightDirective
+    HighlightDirective,
+    TrudiDatepickerComponent,
+    TrudiLoadingPageComponent
   ],
   exports: []
 })

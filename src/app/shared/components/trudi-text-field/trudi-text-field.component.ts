@@ -1,9 +1,9 @@
-import { Component, Injector, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl, ReactiveFormsModule } from '@angular/forms';
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Subject, take, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'trudi-text-field',
@@ -19,17 +19,16 @@ import { Subject, take, takeUntil } from 'rxjs';
     }
   ]
 })
-export class TrudiTextFieldComponent implements ControlValueAccessor, OnInit {
+export class TrudiTextFieldComponent implements ControlValueAccessor, OnInit, OnDestroy {
   @Input() label: string = '';
   @Input() placeholder: string = '';
-  @Input() required: boolean = false;
 
   protected control = new FormControl<string>('');
   private onChange: Function = () => { };
   private onTouched: Function = () => { };
   private unsubscribe$ = new Subject<void>();
 
-  constructor() { }
+  constructor( ) { }
 
   ngOnInit(): void {
     this.control.valueChanges.pipe(

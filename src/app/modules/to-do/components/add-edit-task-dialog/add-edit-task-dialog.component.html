@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>
   {{(data.add ? 'Add task' : 'Edit task')}}
 </h1>
-<div mat-dialog-content style="padding-top: 10px;">
+<div mat-dialog-content style="padding-top: 10px; width: 500px;">
   <form [formGroup]="taskForm">
     <div>
       <trudi-text-field [label]="'Title'" formControlName="title" />
@@ -9,9 +9,16 @@
     <div>
       <trudi-text-field [label]="'Note'" formControlName="note" />
     </div>
+    <div>
+      <trudi-datepicker [label]="'Deadline'" formControlName="deadline" />
+    </div>
+    <div>
+      <trudi-checkbox [viewValue]="'Completed'" formControlName="isCompleted" />
+    </div>
   </form>
 </div>
 <mat-dialog-actions align="end" style="padding: 15px;">
-  <trudi-button [viewValue]="'Cancel'" mat-dialog-close/>
-  <trudi-button [disabled]="taskForm.invalid" [color]="'primary'" style="margin-left: 10px;" [viewValue]="'Confirm'" (onClicked)="handleConfirmClick()" />
+  <trudi-button [viewValue]="'Cancel'" mat-dialog-close />
+  <trudi-button [disabled]="taskForm.invalid" [color]="'primary'" style="margin-left: 10px;" [viewValue]="'Confirm'"
+    (onClicked)="handleConfirmClick()" />
 </mat-dialog-actions>
